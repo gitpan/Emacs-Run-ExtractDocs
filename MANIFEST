@@ -1,0 +1,22 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+lib/Emacs/Run/ExtractDocs.pm
+t/00-extract-doctrings-elisp.t
+t/01-Emacs-Run-ExtractDocs-perl.t
+lisp/extract-doctrings.el
+t/lib/.emacs-template
+t/lib/nada.el
+t/lib-alt/defcustomary.el
+t/lib-alt/defconstalert.el
+t/lib-alt/defvarsity.el
+t/lib-alt/defunnery.el
+t/dat/arc/html/defconstalert_el.html
+t/dat/arc/html/defcustomary_el.html
+t/dat/arc/html/defunnery_el.html
+t/dat/arc/html/defvarsity_el.html
+t/dat/home/hollowman/.emacs
+t/dat/home/mockingbird/.emacs
+t/dat/home/nowhereman/.emacs
+META.yml                                 Module meta-data (added by MakeMaker)
