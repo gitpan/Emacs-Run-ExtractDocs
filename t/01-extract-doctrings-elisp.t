@@ -1,5 +1,6 @@
-# Test file created outside of h2xs framework.
-# Run this like so: `perl extract-doctrings.t'
+# Test file which can be run like so: `
+#     perl 01-extract-doctrings-elisp.t
+#
 #   doom@kzsu.stanford.edu     2008/02/29 04:41:17
 
 #########################

@@ -1,11 +1,14 @@
+Build.PL
 Changes
-Makefile.PL
 MANIFEST
 README
 lib/Emacs/Run/ExtractDocs.pm
-t/00-extract-doctrings-elisp.t
-t/01-Emacs-Run-ExtractDocs-perl.t
 lisp/extract-doctrings.el
+t/pod-coverage.t
+t/pod.t
+t/00-load.t
+t/01-extract-doctrings-elisp.t
+t/02-Emacs-Run-ExtractDocs-perl.t
 t/lib/.emacs-template
 t/lib/nada.el
 t/lib-alt/defcustomary.el
@@ -19,4 +22,5 @@ t/dat/arc/html/defvarsity_el.html
 t/dat/home/hollowman/.emacs
 t/dat/home/mockingbird/.emacs
 t/dat/home/nowhereman/.emacs
-META.yml                                 Module meta-data (added by MakeMaker)
+Makefile.PL
+META.yml

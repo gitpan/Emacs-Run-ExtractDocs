@@ -3,7 +3,7 @@
 ;; Copyright 2008 Joseph Brenner
 ;;
 ;; Author: doom@kzsu.stanford.edu
-;; Version: $Id: extract-doctrings.el,v 1.3 2008/03/26 00:06:31 doom Exp $
+;; Version: $Id: extract-doctrings.el,v 1.3 2008/03/26 00:06:31 doom Exp doom $
 ;; Keywords:
 ;; X-URL: not distributed yet
 
@@ -103,6 +103,8 @@ argument HTML-TITLE, is the title for the html document."
   (interactive "%sElisp file:\n%sOutput html file:%sHtml title:")
    (if (file-exists-p output-file) (delete-file output-file)) ;; delete first to avoid prompt
    (find-file output-file)
+   ;; TODO should probably blank the buffer now also (an unsaved
+   ;; one can be left by previous failed runs).
    (insert (extract-doctrings-html-header html-title))
    (extract-doctrings-dump-docstrings-as-html
     (extract-doctrings-symbol-list-from-elisp-file source-library))
@@ -147,7 +149,6 @@ to define contact information."
             (format-time-string "%d %b %Y"))
     ))
 
-
 (defun extract-doctrings-symbol-list-from-elisp-file (library)
   "Read the elisp for the given LIBRARY & extract all def* docstrings."
   (save-excursion
@@ -183,16 +184,18 @@ to define contact information."
       (setq symbol-list (reverse symbol-list)))
     ))
 
-
-
-(defun extract-doctrings-html-ampersand-subs (string)
-  "Do common html ampersand code substitutions to use this STRING safely in html."
-  (setq string (replace-regexp-in-string "&"   "&amp;"  string))
-  (setq string (replace-regexp-in-string "\""  "&quot;" string))
-  (setq string (replace-regexp-in-string ">"   "&gt;"   string))
-  (setq string (replace-regexp-in-string "<"   "&lt;"   string))
-  )
-
+(defun extract-doctrings-html-ampersand-subs (text)
+  "Do common html ampersand code substitutions to use this TEXT safely in html.
+Converts nil input to the empty string."
+  (cond ((stringp text)
+         (setq text (replace-regexp-in-string "&"   "&amp;"  text))
+         (setq text (replace-regexp-in-string "\""  "&quot;" text))
+         (setq text (replace-regexp-in-string ">"   "&gt;"   text))
+         (setq text (replace-regexp-in-string "<"   "&lt;"   text))
+         )
+        (t ;; silently converts nils to empty string
+         (setq text "")))
+  text)
 
 (defun extract-doctrings-dump-docstrings-as-html (list)
   "Given a LIST of symbol names, insert the doc strings with some HTML markup.
@@ -394,3 +397,4 @@ Internally used by extract-doctrings-dump-docstrings-as-html-exp."
 ;;     the Emacs::Run tests)
 ;;     Add to here (or create a new one):
 ;;       ~/End/Cave/EmacsPerl/Wall/Emacs-Run-ExtractDocs/t/00-extract-doctrings-elisp.t
+

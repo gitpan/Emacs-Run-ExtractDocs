@@ -1,5 +1,6 @@
-# Test file created outside of h2xs framework.
-# Run this like so: `perl Emacs-Run-ExtractDocs.t'
+# Test file which can be run this like so:
+#   perl 02-Emacs-Run-ExtractDocs-perl.t
+#
 #   doom@kzsu.stanford.edu     2008/03/08 10:01:55
 
 use warnings;

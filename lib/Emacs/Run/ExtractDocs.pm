@@ -12,7 +12,7 @@ Emacs::Run::ExtractDocs - extract elisp docstrings to html form
               html_output_location => "/tmp/html",
    });
 
-   # needed only if extract-docstrings.el isn't installed yet
+   # needed only if extract-docstrings.el isn't in load-path
    $reed->set_main_library("/tmp/new/elisp/extract-doctrings.el");
 
    $reed->elisp_docstrings_to_html("my-elisp-with-a-lot-of-docstrings.el");
@@ -43,17 +43,13 @@ use strict;
 use warnings;
 use Carp;
 use Data::Dumper;
-use Hash::Util qw( lock_keys unlock_keys );
+use Hash::Util     qw( lock_keys unlock_keys );
 use File::Basename qw( fileparse basename dirname );
 use Env qw( $HOME );
 
-# For development only:
-# use FindBin qw( $Bin );
-# use lib ("$Bin/../../../../Emacs-Run/lib");
-
 use Emacs::Run;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 my $DEBUG = 0;  # TODO change to 0 before shipping
 
 # needed for accessor generation
@@ -281,20 +277,27 @@ sub AUTOLOAD {
 
 Publishing code to a web site is essentially a systems
 administration task that is a very good fit for perl, but when
-the code you're publishing is emacs lisp, emacs lisp is
-convenient for some tasks: hence this franken-project, gluing an
-emacs lisp package (extract-docstrings.el) into
+the code you're publishing is emacs lisp, then emacs lisp is
+convenient for some of the tasks: hence this franken-project,
+gluing an emacs lisp package (extract-docstrings.el) into a perl
+module framework.
 
-A practice started by Illya Zakharovich when he authored
-cperl-mode was to abuse this system of docstrings slightly, in
-order to fake "pod" in elisp.
+Emacs lisp has a feature where a "docstring" can be defined for
+each function or variable.  This was primarily intended for the
+use of the emacs on-line help system, as opposed to the texinfo
+format used by the Gnu project for it's more formal documentation.
 
-If you're documentation is embedded in the emacs helps
-system in the form of these docstrings, when creating web
-pages about the code, it's useful to be able to extract
-the docstrings and format them as an html page.
+A practice started by Ilya Zakharovich when he wrote
+cperl-mode was to abuse this system of docstrings, in
+order to lower the bar to writing documentation: essentially
+it's a way of faking "pod" in elisp.
 
-And that's the need this lash-up of a module fills.
+If your documentation is embedded in the emacs help system in
+the form of these docstrings, then when creating web pages about
+the code, it's useful to be able to extract the docstrings and
+format them as an html page.
+
+And that's the small need this lash-up of a module fills.
 
 
 =head1 TODO
@@ -304,7 +307,7 @@ o  With this version, I use the (rather cheesy, in my opinion)
    somewhere in the load-path.  Question: can this be automated?
 
 o  Currently, this is file-oriented: one *.el in, one *.html out.
-   Would like to work on a set of elisp file, and handle
+   Would like to work on a set of elisp files, and handle
    internal links inside the set appropriately.
 
 o  Look into skeleton or tempo to do html headers and footers.
