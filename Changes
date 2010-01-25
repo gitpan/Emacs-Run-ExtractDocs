@@ -8,3 +8,5 @@ Revision history for Emacs-Run-ExtractDocs
         - switching to a Module::Build based project
           (working with module-starter)
 
+0.03  Mon Jan 25 02:59:36 2010
+        - fixed missing dependencies in Build.PL

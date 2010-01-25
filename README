@@ -3,7 +3,8 @@ Emacs-Run-ExtractDocs
 A perl/elisp lash-up to extract the docstrings from an
 elisp file to a html page.
 
-With version 0.2, this is now a Module::Build-based project
+As of version 0.2, this is now a Module::Build-based project.
+Version 0.3 fixes dependencies (so that tests have a hope of passing).
 
 INSTALLATION
 

@@ -49,7 +49,7 @@ use Env qw( $HOME );
 
 use Emacs::Run;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 my $DEBUG = 0;  # TODO change to 0 before shipping
 
 # needed for accessor generation
